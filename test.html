@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JML</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/javascript" src="jml.js"></script>
+    <script>
+    
+        const selector = '#root';
+        const jmlInstance = new jml(selector, div(
+            { class: 'container' },
+            function () {
+                const userId = 1;
+                const users = [
+                    {id: 1, name: 'Akın', lastname: 'Özgen'},
+                    {id: 2, name: 'Nameless', lastname: 'Foe'},
+                    {id: 3, name: 'Unnamed', lastname: 'Budy'},
+                ];
+                
+                const currentUser = users.find(x => x.id === userId);
+                
+                return p({}, `Welcome Back, ${currentUser.name} ${currentUser.lastname}`);
+            }
+        ));
+    </script>
+</body>
+</html>

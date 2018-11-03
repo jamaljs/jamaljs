@@ -1,7 +1,7 @@
 <div align="center">
 <h1>JML.JS</h1>
 
-<p>JML(JavaScript Mark-up Language) JS view framework built on top of everything</p>
+<p>JML(JavaScript Mark-up Language) JS view framework built on top of nothing</p>
 
 </div>
 

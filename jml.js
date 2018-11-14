@@ -2,7 +2,7 @@ const tags = ["a","abbr","acronym","address","applet","area","article","aside","
 
 for (let tag of tags) {
     eval(`function ${tag}(attrs, children) {
-        return \`<${tag} \$\{Object.keys(attrs).map(function(x) {return \`\$\{x\}="\$\{attrs[x]\}" \`})\}>
+        return \`<${tag} \$\{Object.keys(attrs).map(function(x) {return \`\$\{x\}="\$\{attrs[x]\}" \`}).join('')\}>
             \$\{typeof children === 'function' ? children() : eval('\`\$\{children\}\`')\}
         </${tag}>\`;
     }`);

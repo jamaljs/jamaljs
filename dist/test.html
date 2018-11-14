@@ -14,6 +14,10 @@
   <div id="root"></div>
 
   <script>
+    Jml.initialize({
+      debug: true
+    });
+
     const table = jTable({
       border: 2,
       cellspacing: 3,
@@ -27,12 +31,14 @@
         ['3', 'akinozgen17', 'akinozgen17@hotmail.com', '+905459047501']
       ].map(function (userRow) {
         return jTr({}, userRow.map(function (cell) {
-          return jTd({}, [cell]);
+          return jTd({
+            width: '25%'
+          }, [cell]);
         }));
       })),
     ]);
 
-    const jmlInstance = new Jml('#root', table);
+    const jmlInstance = new Jml.create('#root', table, true);
 
     jmlInstance.render();
   </script>

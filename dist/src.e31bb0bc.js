@@ -138,10 +138,15 @@ Jml.create = function (selector, markup) {
     return _this.body.innerHTML = '';
   };
 
+  var getRef = function getRef(id) {
+    return _this.body.querySelector("[_id=\"".concat(id, "\"]"));
+  };
+
   return {
     body: this.body,
     render: render,
     clear: clear,
+    getRef: getRef,
     markup: markup
   };
 };
@@ -222,7 +227,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50068" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52916" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

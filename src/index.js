@@ -9,11 +9,13 @@ Jml.create = function (selector, markup, debug = false) {
 
 	const render = () => this.body.appendChild(markup);
 	const clear = () => this.body.innerHTML = '';
+	const getRef = id => this.body.querySelector(`[_id="${id}"]`);
 
 	return {
 		body: this.body,
 		render,
 		clear,
+		getRef,
 		markup
 	};
 }

@@ -1,9 +1,8 @@
 <div align="center">
 <h1>JaMaL</h1>
 <p>Stupidly simple javascript view engine</p>
+<img src="src/img/logo.png" />
 </div>
-
-![JaMaL](src/img/logo.png)
 
 JaMaL stands for JML which is javascript markup language. "a"'s are just filling.
 

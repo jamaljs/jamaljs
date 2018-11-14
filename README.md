@@ -111,7 +111,7 @@ Debug option gives information about jSomething function runtime, inspect option
 #### Accessing refs
 
 Your `jmlInstance` object has property called `getRef`. Which is a function, takes string for `_id` attribute.
-This method returns a reference from actula dom tree so you can easily inspect your actual dom.
+This method returns a reference from actual dom tree so you can easily inspect your actual dom.
 
 Usage:
 ```javascript
@@ -125,34 +125,11 @@ Usage:
 Everything is jSomething method, a jSomething method takes an argument which can be another jSomething method. So you need to understand nesting carefuly.
 
 There is some complex example:
-```javascript
-const jmlInstance = new Jml.create('#root', jTable({
-        border: 2,
-        cellspacing: 3,
-        cellpadding: 5,
-        bordercolor: 'green'
-    },
-    [
-        jThead({}, ['ID', 'Username', 'Email', 'Phone'].map(th => jTh({}, [th]))),
-        jTbody({}, [
-            ['1', 'akinozgen', 'akinozgen17@outlook.com', '+90 5xx xxx xx xx'],
-            ['2', 'aknozgen', 'akinozgen17@gmail.com', '+90 5xx xxx xx xx'],
-            ['3', 'akinozgen17', 'akinozgen17@hotmail.com', '+90 5xx xxx xx xx']
-        ].map(function (userRow) {
-            return jTr({}, userRow.map(function (cell) {
-            return jTd({
-                width: '25%'
-            }, [cell, jUserAvatarCircleHolder({}, ['asad'])]);
-        }));
-    }))
-]));
 
-console.log(jmlInstance.markup);
-// Output
-// <table _id="_seqpfjknj" border="2" cellspacing="3" cellpadding="5" bordercolor="green"><thead _id="_hr8rjmyxc"><th _id="_whnqb1vmg">ID</th><th _id...>
-```
+![Nesting Example](src/img/nesting.png)
 
 And thats actual render:
+
 ![Rendered table](src/img/output.png)
 
 Theres just few important points to care about

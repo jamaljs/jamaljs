@@ -11,7 +11,7 @@ JaMaL stands for JML which is javascript markup language. "a"'s are just filling
 
 ## Table Of Contents
 * [Philosophy](#philosophy)
-  * [Why "JaMaL"?](#why-"jamal")
+  * [Why "JaMaL"?](#why-jamal)
   * [What is it for?](#what-is-it-for)
   * [Whom is it for?](#whom-is-it-for)
 * [Basic Usage](#basic-usage)

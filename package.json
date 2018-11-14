@@ -8,10 +8,12 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.1.6"
+    "@babel/preset-env": "^7.1.6",
+    "parcel-bundler": "^1.10.3"
   },
   "scripts": {
-    "build": "babel src -d dist --minified --compact --watch"
+    "build": "babel src -d dist --minified --compact --watch",
+    "watch": "parcel watch src/index.js -d dist"
   },
   "dependencies": {
     "uniqid": "^5.0.3"

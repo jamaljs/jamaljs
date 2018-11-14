@@ -146,7 +146,7 @@ A jSomething functions second args (which is an array) can be mapped with `.map`
 
 ### Get Started
 
-Clone project to you local machine. Install dependencies with `npm install` or ``yarn` command. 
+Clone project to you local machine. Install dependencies with `npm install` or `yarn` command. 
 
 #### Development
 

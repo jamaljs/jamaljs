@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="/src.e31bb0bc.js"></script>
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script>Jml.initialize({
+  debug: true,
+  customTags: ['theme', 'deneme', 'akinozgen', 'profile-image', 'user-avatar-circle-holder']
+});
+var jmlInstance = new Jml.create('#root', jTable({
+  border: 2,
+  cellspacing: 3,
+  cellpadding: 5,
+  bordercolor: 'green'
+}, [jThead({}, ['ID', 'Username', 'Email', 'Phone'].map(function (th) {
+  return jTh({}, [th]);
+})), jTbody({}, [['1', 'akinozgen', 'akinozgen17@outlook.com', '+905459047500'], ['2', 'aknozgen', 'akinozgen17@gmail.com', '+905459047502'], ['3', 'akinozgen17', 'akinozgen17@hotmail.com', '+905459047501']].map(function (userRow) {
+  return jTr({}, userRow.map(function (cell) {
+    return jTd({
+      width: '25%'
+    }, [cell, jUserAvatarCircleHolder({}, ['asad'])]);
+  }));
+}))]), true);
+jmlInstance.render();</script>
+</body>
+
+</html>

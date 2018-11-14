@@ -417,21 +417,6 @@ var _uniqid = _interopRequireDefault(require("uniqid"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*const tags = ["a","abbr","acronym","address","applet","area","article","aside","audio","b","base","basefont","bdi","bdo","big","blockquote","body","br","button","canvas","caption","center","cite","code","col","colgroup","datalist","dd","del","details","dfn","dialog","dir","div","dl","dt","em","embed","fieldset","figcaption","figure","font","footer","form","frame","frameset","h1", "h2", "h3", "h4","head","header","hr","html","i","iframe","img","input","ins","kbd","keygen","label","legend","li","link","main","map","mark","menu","menuitem","meta","meter","nav","noframes","noscript","object","ol","optgroup","option","output","p","param","picture","pre","progress","q","rp","rt","ruby","s","samp","script","section","select","small","source","span","strike","strong","style","sub","summary","sup","table","tbody","td","textarea","tfoot","th","thead","time","title","tr","track","tt","u","ul","video","wbr"];
-
-for (let tag of tags) {
-	eval(`function ${tag}(attrs, children) {
-		return \`<${tag} \$\{Object.keys(attrs).map(function(x) {return \`\$\{x\}="\$\{attrs[x]\}" \`}).join('')\}>
-			\$\{typeof children === 'function' ? children() : eval('\`\$\{children\}\`')\}
-		</${tag}>\`;
-	}`);
-}
-
-const jml = function (selector, markup) {
-	const body = document.querySelector(selector);
-	body.innerHTML = markup;
-};
-*/
 var tags = "a,abbr,acronym,address,applet,area,article,aside,audio,b,base,basefont,bdi,bdo,big,blockquote,body,br,button,canvas,caption,center,cite,code,col,colgroup,datalist,dd,del,details,dfn,dialog,dir,div,dl,dt,em,embed,fieldset,figcaption,figure,font,footer,form,frame,frameset,h1,h2,h3,h4,head,header,hr,html,i,iframe,img,input,ins,kbd,keygen,label,legend,li,link,main,map,mark,menu,menuitem,meta,meter,nav,noframes,noscript,object,ol,optgroup,option,output,p,param,picture,pre,progress,q,rp,rt,ruby,s,samp,script,section,select,small,source,span,strike,strong,style,sub,summary,sup,table,tbody,td,textarea,tfoot,th,thead,time,title,tr,track,tt,u,ul,video,wbr".split(',');
 var Jml = {};
 
@@ -491,19 +476,22 @@ Jml.initialize = function (_ref) {
 
       if (debug) {
         var debugChildren = window.document.createElement(tag);
+        var refId = (0, _uniqid.default)();
         debugChildren.innerHTML = "<".concat(tag).concat(parsedAttributes ? ' ' + parsedAttributes : '', ">").concat(parsedChildren, "</").concat(tag, ">");
+        window["".concat(tag, "_ref_").concat(refId)] = debugChildren;
         console.group(tag);
         console.log("Element: ".concat(tag, " ->"));
-        console.log('\t\tAttributes:', attrs);
-        console.log('\t\tChildren:', debugChildren);
+        console.log('\tAttributes:', attrs);
+        console.log('\tChildren:', window["".concat(tag, "_ref_").concat(refId)]);
         console.groupEnd();
       }
 
-      window["".concat(tag, "-ref-").concat((0, _uniqid.default)())] = '';
       return "\n<".concat(tag).concat(parsedAttributes ? ' ' + parsedAttributes : '', ">").concat(parsedChildren, "</").concat(tag, ">");
     };
   });
 };
+
+module.exports = Jml;
 },{"uniqid":"../node_modules/uniqid/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -531,7 +519,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57610" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59013" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -673,5 +661,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/index.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], "Jml")
+//# sourceMappingURL=/src.e31bb0bc.map

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./index.js"></script>
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script>
+    const table = jTable({
+      border: 2,
+      cellspacing: 3,
+      cellpadding: 5,
+      bordercolor: 'green'
+    }, [
+      jThead({}, ['ID', 'Username', 'Email', 'Phone'].map(th => jTh({}, [th]))),
+      jTbody({}, [
+        ['1', 'akinozgen', 'akinozgen17@outlook.com', '+905459047500'],
+        ['2', 'aknozgen', 'akinozgen17@gmail.com', '+905459047502'],
+        ['3', 'akinozgen17', 'akinozgen17@hotmail.com', '+905459047501']
+      ].map(function (userRow) {
+        return jTr({}, userRow.map(function (cell) {
+          return jTd({}, [cell]);
+        }));
+      })),
+    ]);
+
+    const jmlInstance = new Jml('#root', table);
+
+    jmlInstance.render();
+  </script>
+</body>
+
+</html>

@@ -20,6 +20,7 @@ JaMaL stands for JML which is javascript markup language. "a"'s are just filling
     * [Accessing refs.](#accessing-refs)
     * [Nesting](#nesting)
     * [Callbacks](#callbacks)
+* [Get Started](#get-started)
 
 * Advanced Usage
   * Comng Soon     
@@ -141,3 +142,12 @@ Theres just few important points to care about
 #### Callbacks
 
 A jSomething functions second args (which is an array) can be mapped with `.map`, `.filter` or functions like that. One obligation: it must be an array after all.
+
+
+### Get Started
+
+Clone project to you local machine. Install dependencies with `npm install` or ``yarn` command. 
+
+#### Development
+
+Run `yarn watch` command and open http://localhost:8080 from your browser and get started. No not modify `src/index.js` unless you know what you're doing. `src/index.js` file is main jml library file. If you want to use jml (not developing it) import another script or write it inside html file.

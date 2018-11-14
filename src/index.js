@@ -1,4 +1,4 @@
-import uniqid from 'uniqid';
+import uniqid from './uniqid';
 
 const tags = "a,abbr,acronym,address,applet,area,article,aside,audio,b,base,basefont,bdi,bdo,big,blockquote,body,br,button,canvas,caption,center,cite,code,col,colgroup,datalist,dd,del,details,dfn,dialog,dir,div,dl,dt,em,embed,fieldset,figcaption,figure,font,footer,form,frame,frameset,h1,h2,h3,h4,head,header,hr,html,i,iframe,img,input,ins,kbd,keygen,label,legend,li,link,main,map,mark,menu,menuitem,meta,meter,nav,noframes,noscript,object,ol,optgroup,option,output,p,param,picture,pre,progress,q,rp,rt,ruby,s,samp,script,section,select,small,source,span,strike,strong,style,sub,summary,sup,table,tbody,td,textarea,tfoot,th,thead,time,title,tr,track,tt,u,ul,video,wbr".split(',');
 
@@ -7,18 +7,18 @@ const Jml = {};
 Jml.create = function (selector, markup, debug = false) {
 	this.body = window.document.querySelector(selector);
 
-	const render = () => this.body.innerHTML = markup;
+	const render = () => this.body.appendChild(markup);
 	const clear = () => this.body.innerHTML = '';
 
 	return {
 		body: this.body,
 		render,
-		clear
+		clear,
+		markup
 	};
 }
 
-Jml.initialize = ({ debug = false, customTags = [] }) => {
-	if (debug) console.log('Jml debug mode is on 💚');
+Jml.initialize = ({ customTags = [] }) => {
 
 	if (customTags.length > 0) {
 		customTags.forEach(customTag => tags.push((_ => {
@@ -30,32 +30,26 @@ Jml.initialize = ({ debug = false, customTags = [] }) => {
 	}
 
 	tags.forEach(tag => {
-		window[`j${tag.replace(/^./, firstCharacter => firstCharacter.toUpperCase())}`] = (attrs, children) => {
-			const parsedAttributes = Object.keys(attrs)
-				.map(key => `${key}="${attrs[key]}"`)
-				.join(' ');
 
-			const parsedChildren = children.map(child => {
-				if (typeof child === 'function') child;
-				return `${child}`;
-			}).join('\n');
+		window[`j${tag.replace(/^./, firstCharacter => firstCharacter.toUpperCase())}`] =
+			(attrs, children, config = { debug: false, inspect: false }) => {
+				const element = document.createElement(tag);
+				element.setAttribute('_id', uniqid());
 
-			if (debug) {
-				const debugChildren = window.document.createElement(tag);
-				const refId = uniqid();
+				Object.keys(attrs).map(key => element.setAttribute(key, attrs[key]));
+				children.forEach(child => element.appendChild(typeof child === 'object' ? child : document.createTextNode(child)));
 
-				debugChildren.innerHTML = `<${tag}${parsedAttributes ? ' ' + parsedAttributes : ''}>${parsedChildren}</${tag}>`;
-				window[`${tag}_ref_${refId}`] = debugChildren;
+				if (config.debug) {
+					console.group(`Element: ${tag}`);
+					console.log('\tAttributes:', element.attributes);
+					console.log('\tChildren:', element.children);
+					console.groupEnd();
+				}
 
-				console.group(tag);
-				console.log(`Element: ${tag} ->`);
-				console.log('\tAttributes:', attrs);
-				console.log('\tChildren:', window[`${tag}_ref_${refId}`]);
-				console.groupEnd();
-			}
+				if (config.inspect) debugger;
 
-			return `\n<${tag}${parsedAttributes ? ' ' + parsedAttributes : ''}>${parsedChildren}</${tag}>`;
-		};
+				return element;
+			};
 	});
 };
 

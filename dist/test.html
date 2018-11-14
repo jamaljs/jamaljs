@@ -15,10 +15,11 @@
 
   <script>
     Jml.initialize({
-      debug: true
+      debug: true,
+      customTags: ['theme', 'deneme', 'akinozgen', 'profile-image', 'user-avatar-circle-holder']
     });
 
-    const table = jTable({
+    const jmlInstance = new Jml.create('#root', jTable({
       border: 2,
       cellspacing: 3,
       cellpadding: 5,
@@ -33,12 +34,10 @@
         return jTr({}, userRow.map(function (cell) {
           return jTd({
             width: '25%'
-          }, [cell]);
+          }, [cell, jUserAvatarCircleHolder({}, ['asad'])]);
         }));
       })),
-    ]);
-
-    const jmlInstance = new Jml.create('#root', table, true);
+    ]), true);
 
     jmlInstance.render();
   </script>

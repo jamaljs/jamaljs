@@ -1,6 +1,6 @@
 {
-  "name": "jml.js",
-  "version": "0.1.0",
+  "name": "jamal",
+  "version": "1.0.0",
   "main": "jml.min.js",
   "repository": "https://github.com/akinozgen/jml.git",
   "author": "Akın Özgen <akinozgen17@outlook.com>",

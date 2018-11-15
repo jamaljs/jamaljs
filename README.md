@@ -94,7 +94,7 @@ JMLInstance returns an object that has five elements. They are:
 #### jSomething functions
 
 jSomething functions are totally html tags can be used as functions.
-For example html has `acticle` tag, jml has `jArticle` tag. Also jSomething tags can be created by given custom tags in `jmlInstance.initialize` method.
+For example html has `article` tag, jml has `jArticle` tag. Also jSomething tags can be created by given custom tags in `jmlInstance.initialize` method.
 
 jSomething methods also has config options. Currently it has just two options, `debug` and `inspect`.
 Debug option gives information about jSomething function runtime, inspect options puts debugger in that jSomething method.
@@ -146,7 +146,7 @@ A jSomething functions second args (which is an array) can be mapped with `.map`
 
 ### Get Started
 
-Clone project to you local machine. Install dependencies with `npm install` or ``yarn` command. 
+Clone project to you local machine. Install dependencies with `npm install` or `yarn` command. 
 
 #### Development
 

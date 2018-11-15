@@ -16,6 +16,5 @@
     "watch": "parcel -p 8080 watch src/index.html -d dist --global Jml"
   },
   "dependencies": {
-    "uniqid": "^5.0.3"
   }
 }

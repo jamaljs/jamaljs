@@ -1,7 +1,7 @@
 {
   "name": "jamal",
   "version": "1.0.0",
-  "main": "jml.min.js",
+  "main": "build/src.min.js",
   "repository": "https://github.com/akinozgen/jml.git",
   "author": "Akın Özgen <akinozgen17@outlook.com>",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "parcel-bundler": "^1.10.3"
   },
   "scripts": {
-    "build": "babel src -d dist --minified --compact --watch",
+    "build": "parcel build src/index.html -d build --global Jml",
     "watch": "parcel -p 8080 watch src/index.html -d dist --global Jml"
   },
   "dependencies": {

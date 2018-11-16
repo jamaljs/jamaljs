@@ -21,6 +21,9 @@ JaMaL stands for JML which is javascript markup language. "a"'s are just filling
     * [Nesting](#nesting)
     * [Callbacks](#callbacks)
 * [Get Started](#get-started)
+    * [CDN](#cdn)
+    * [NPM Package](#npm-package)
+    * [Development](#development)
 
 * Advanced Usage
   * Comng Soon     
@@ -147,6 +150,17 @@ A jSomething functions second args (which is an array) can be mapped with `.map`
 ### Get Started
 
 Clone project to you local machine. Install dependencies with `npm install` or `yarn` command. 
+
+#### CDN
+```html
+<script src="https://unpkg.com/jamal@1.0.0/build/src.min.js"></script>
+```
+
+##### NPM Package
+[JaMaL on NPM](https://www.npmjs.com/package/jamal)
+```bash
+$ npm install jamal
+```
 
 #### Development
 

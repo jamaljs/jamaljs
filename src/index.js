@@ -1,6 +1,6 @@
 import uniqid from './uniqid';
 
-const tags = "a,abbr,acronym,address,applet,area,article,aside,audio,b,base,basefont,bdi,bdo,big,blockquote,body,br,button,canvas,caption,center,cite,code,col,colgroup,datalist,dd,del,details,dfn,dialog,dir,div,dl,dt,em,embed,fieldset,figcaption,figure,font,footer,form,frame,frameset,h1,h2,h3,h4,head,header,hr,html,i,iframe,img,input,ins,kbd,keygen,label,legend,li,link,main,map,mark,menu,menuitem,meta,meter,nav,noframes,noscript,object,ol,optgroup,option,output,p,param,picture,pre,progress,q,rp,rt,ruby,s,samp,script,section,select,small,source,span,strike,strong,style,sub,summary,sup,table,tbody,td,textarea,tfoot,th,thead,time,title,tr,track,tt,u,ul,video,wbr".split(',');
+const tags = "a,abbr,acronym,address,applet,area,article,aside,audio,b,base,basefont,bdi,bdo,big,blockquote,body,br,button,canvas,caption,center,cite,code,col,colgroup,datalist,dd,del,details,dfn,dialog,dir,div,dl,dt,em,embed,fieldset,figcaption,figure,font,footer,form,frame,frameset,h1,h2,h3,h4,head,header,hr,html,i,iframe,img,input,ins,kbd,keygen,label,legend,li,link,main,map,mark,menu,menuitem,meta,meter,nav,noframes,noscript,object,ol,optgroup,option,output,p,param,picture,pre,progress,q,rp,rt,ruby,s,samp,script,section,select,small,source,span,strike,strong,style,sub,summary,sup,table,tbody,td,textarea,tfoot,th,thead,time,title,tr,track,tt,u,ul,video,wbr,var".split(',');
 
 const Jml = {};
 
@@ -28,7 +28,7 @@ Jml.create = function (selector, markup, debug = false) {
 	};
 }
 
-Jml.processParameters = (parameters = { attributes: {}, content: [] }) => {
+Jml.processParameters = function (parameters = { attributes: {}, content: [] }) {
 	const { attributes, content } = parameters;
 	// If everything is correct
 	if (typeof attributes === 'object' && Array.isArray(content)) 
@@ -50,7 +50,7 @@ Jml.processParameters = (parameters = { attributes: {}, content: [] }) => {
 	return { attrs: {}, children: [] };
 };
 
-Jml.initialize = (config = { customTags: [] }) => {
+Jml.initialize = function (config = { customTags: [] }) {
 	const { customTags } = config;
 
 	if (customTags.length > 0) {
@@ -62,11 +62,10 @@ Jml.initialize = (config = { customTags: [] }) => {
 		})(customTag)));
 	}
 
-	tags.forEach(tag => {
-
+	tags.forEach(tag => 
 		window[`j${tag.replace(/^./, firstCharacter => firstCharacter.toUpperCase())}`] =
 			(attributes, content, config = { debug: false, inspect: false }) => {
-				const { attrs, children } = Jml.processParameters({ attributes, content });
+				const { attrs, children } = this.processParameters({ attributes, content });
 
 				const element = document.createElement(tag);
 				element.setAttribute('_id', uniqid());
@@ -87,7 +86,11 @@ Jml.initialize = (config = { customTags: [] }) => {
 
 				});
 
-				children.forEach(child => element.appendChild(typeof child === 'object' ? child : document.createTextNode(child)));
+				children.forEach(
+					child => element.appendChild(
+						typeof child === 'string' ? document.createTextNode(child) : child
+					)
+				);
 
 				if (config.debug) {
 					console.group(`Element: ${tag}`);
@@ -99,8 +102,8 @@ Jml.initialize = (config = { customTags: [] }) => {
 				if (config.inspect) debugger;
 
 				return element;
-			};
-	});
+			}
+	);
 };
 
 module.exports = Jml;

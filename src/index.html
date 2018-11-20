@@ -16,6 +16,11 @@
 
   <script>
     Jml.initialize();
+    const userData = [
+      ['1', 'akinozgen', 'akinozgen17@outlook.com', '+90 5xx xxx xx xx'],
+      ['2', 'aknozgen', 'akinozgen17@gmail.com', '+90 5xx xxx xx xx'],
+      ['3', 'akinozgen17', 'akinozgen17@hotmail.com', '+90 5xx xxx xx xx']
+    ];
 
     const jmlInstance = new Jml.create('#root', jTable({
         border: 2,
@@ -24,11 +29,7 @@
         bordercolor: 'green'
       }, [
         jThead({}, ['ID', 'Username', 'Email', 'Phone'].map(th => jTh({}, [th]))),
-        jTbody({}, [
-          ['1', 'akinozgen', 'akinozgen17@outlook.com', '+90 5xx xxx xx xx'],
-          ['2', 'aknozgen', 'akinozgen17@gmail.com', '+90 5xx xxx xx xx'],
-          ['3', 'akinozgen17', 'akinozgen17@hotmail.com', '+90 5xx xxx xx xx']
-        ].map(function (userRow) {
+        jTbody({}, userData.map(function (userRow) {
           return jTr({}, userRow.map(function (cell) {
             return jTd({
               width: '25%'
@@ -49,12 +50,12 @@
     const take2Jml = new Jml.create('#take-2', [
         jBlockquote(
           jA({ href: 'javascript:void(0)', _onClick: aClickEvent, 'data-username': 'John Doe' }, 'I\'m a clickable thing!')
-        ),
+        ), // End Of Blockquote
         jBr(),
         jBlockquote(
           jA({ href: '#' }, [jI('Deneme'), jBr(), jI('Deneme'), jBr(), jI('Deneme')])
         )
-      ]
+      ] // End Of Markup Array
     );
 
     take2Jml.render();

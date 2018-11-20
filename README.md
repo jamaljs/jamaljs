@@ -26,7 +26,7 @@ JaMaL stands for JML which is javascript markup language. "a"'s are just filling
     * [CDN](#cdn)
     * [NPM Package](#npm-package)
     * [Development](#development)
-
+* [To-do](#to-do)
 * Advanced Usage
   * Comng Soon     
 
@@ -167,3 +167,12 @@ $ npm install jamal
 #### Development
 
 Run `yarn watch` command and open http://localhost:8080 from your browser and get started. No not modify `src/index.js` unless you know what you're doing. `src/index.js` file is main jml library file. If you want to use jml (not developing it) import another script or write it inside html file.
+
+### To-Do
+
+- [ ] onEvents for jSomething methods.
+- [ ] Children parameter usage flexibility.
+- [x] NPM package update.
+- [ ] HTML to JML tool.
+- [ ] Remove customTag necessity.
+- [ ] More flexible parameter passing for jSomething functions.

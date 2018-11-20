@@ -158,7 +158,7 @@ Clone project to you local machine. Install dependencies with `npm install` or `
 <script src="https://unpkg.com/jamal@1.0.1/build/src.min.js"></script>
 ```
 
-##### NPM Package
+#### NPM Package
 [JaMaL on NPM](https://www.npmjs.com/package/jamal)
 ```bash
 $ npm install jamal

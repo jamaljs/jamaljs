@@ -129,9 +129,14 @@ Jml.create = function (selector, markup) {
 
   var debug = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
   this.body = window.document.querySelector(selector);
+  var defaultHolder = document.createElement('div');
+  defaultHolder.setAttribute('_id', "jml-container-".concat((0, _uniqid.default)()));
+  if (Array.isArray(markup)) markup.map(function (node) {
+    return defaultHolder.appendChild(node);
+  });else defaultHolder.appendChild(markup);
 
   var render = function render() {
-    return _this.body.appendChild(markup);
+    return _this.body.appendChild(defaultHolder);
   };
 
   var clear = function clear() {
@@ -151,9 +156,45 @@ Jml.create = function (selector, markup) {
   };
 };
 
-Jml.initialize = function (_ref) {
-  var _ref$customTags = _ref.customTags,
-      customTags = _ref$customTags === void 0 ? [] : _ref$customTags;
+Jml.processParameters = function () {
+  var parameters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    attributes: {},
+    content: []
+  };
+  var attributes = parameters.attributes,
+      content = parameters.content; // If everything is correct
+
+  if (_typeof(attributes) === 'object' && Array.isArray(content)) return {
+    attrs: attributes,
+    children: content
+  }; // If children given first and not given attrs 
+
+  if (Array.isArray(attributes)) return {
+    attrs: {},
+    children: attributes
+  }; // If first parameter is (jSomething or text) and no attrs
+
+  if (attributes instanceof HTMLElement || typeof attributes === 'string') return {
+    attrs: {},
+    children: [attributes]
+  }; // If object of attrs and children(jSometing or string) passed
+
+  if (_typeof(attributes) === 'object' && (content instanceof HTMLElement || typeof content === 'string')) return {
+    attrs: attributes,
+    children: [content]
+  }; // If nothing passed
+
+  return {
+    attrs: {},
+    children: []
+  };
+};
+
+Jml.initialize = function () {
+  var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    customTags: []
+  };
+  var customTags = config.customTags;
 
   if (customTags.length > 0) {
     customTags.forEach(function (customTag) {
@@ -172,11 +213,19 @@ Jml.initialize = function (_ref) {
   tags.forEach(function (tag) {
     window["j".concat(tag.replace(/^./, function (firstCharacter) {
       return firstCharacter.toUpperCase();
-    }))] = function (attrs, children) {
+    }))] = function (attributes, content) {
       var config = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
         debug: false,
         inspect: false
       };
+
+      var _Jml$processParameter = Jml.processParameters({
+        attributes: attributes,
+        content: content
+      }),
+          attrs = _Jml$processParameter.attrs,
+          children = _Jml$processParameter.children;
+
       var element = document.createElement(tag);
       element.setAttribute('_id', (0, _uniqid.default)());
       Object.keys(attrs).map(function (key) {
@@ -227,7 +276,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58829" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55853" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

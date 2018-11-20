@@ -7,7 +7,15 @@ const Jml = {};
 Jml.create = function (selector, markup, debug = false) {
 	this.body = window.document.querySelector(selector);
 
-	const render = () => this.body.appendChild(markup);
+	const defaultHolder = document.createElement('div');
+	defaultHolder.setAttribute('_id', `jml-container-${uniqid()}`);
+
+	if (Array.isArray(markup)) 
+		markup.map(node => defaultHolder.appendChild(node));
+	else
+		defaultHolder.appendChild(markup);
+
+	const render = () => this.body.appendChild(defaultHolder);
 	const clear = () => this.body.innerHTML = '';
 	const getRef = id => this.body.querySelector(`[_id="${id}"]`);
 
@@ -20,7 +28,30 @@ Jml.create = function (selector, markup, debug = false) {
 	};
 }
 
-Jml.initialize = ({ customTags = [] }) => {
+Jml.processParameters = (parameters = { attributes: {}, content: [] }) => {
+	const { attributes, content } = parameters;
+	// If everything is correct
+	if (typeof attributes === 'object' && Array.isArray(content)) 
+		return { attrs: attributes, children: content };
+	
+	// If children given first and not given attrs 
+	if (Array.isArray(attributes))
+		return { attrs: {}, children: attributes };
+
+	// If first parameter is (jSomething or text) and no attrs
+	if (attributes instanceof HTMLElement || typeof attributes === 'string')
+		return { attrs: {}, children: [attributes] };
+	
+	// If object of attrs and children(jSometing or string) passed
+	if (typeof attributes === 'object' && (content instanceof HTMLElement || typeof content === 'string'))
+		return { attrs: attributes, children: [content] };
+	
+	// If nothing passed
+	return { attrs: {}, children: [] };
+};
+
+Jml.initialize = (config = { customTags: [] }) => {
+	const { customTags } = config;
 
 	if (customTags.length > 0) {
 		customTags.forEach(customTag => tags.push((_ => {
@@ -34,7 +65,9 @@ Jml.initialize = ({ customTags = [] }) => {
 	tags.forEach(tag => {
 
 		window[`j${tag.replace(/^./, firstCharacter => firstCharacter.toUpperCase())}`] =
-			(attrs, children, config = { debug: false, inspect: false }) => {
+			(attributes, content, config = { debug: false, inspect: false }) => {
+				const { attrs, children } = Jml.processParameters({ attributes, content });
+
 				const element = document.createElement(tag);
 				element.setAttribute('_id', uniqid());
 

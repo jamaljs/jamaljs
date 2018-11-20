@@ -171,8 +171,8 @@ Run `yarn watch` command and open http://localhost:8080 from your browser and ge
 ### To-Do
 
 - [ ] onEvents for jSomething methods.
-- [ ] Children parameter usage flexibility.
+- [x] Children parameter usage flexibility.
 - [x] NPM package update.
 - [ ] HTML to JML tool.
-- [ ] Remove customTag necessity.
-- [ ] More flexible parameter passing for jSomething functions.
+- [x] Remove customTag necessity.
+- [x] More flexible parameter passing for jSomething functions.

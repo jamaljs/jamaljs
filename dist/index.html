@@ -12,10 +12,9 @@
 <body>
 
   <div id="root"></div>
+  <div id="take-2"></div>
 
-  <script>Jml.initialize({
-  customTags: ['theme', 'deneme', 'akinozgen', 'profile-image', 'user-avatar-circle-holder']
-});
+  <script>Jml.initialize();
 var jmlInstance = new Jml.create('#root', jTable({
   border: 2,
   cellspacing: 3,
@@ -27,10 +26,17 @@ var jmlInstance = new Jml.create('#root', jTable({
   return jTr({}, userRow.map(function (cell) {
     return jTd({
       width: '25%'
-    }, [cell, jUserAvatarCircleHolder({}, ['asad'])]);
+    }, [cell]);
   }));
 }))]));
 jmlInstance.render();</script>
+
+  <script>var take2Jml = new Jml.create('#take-2', [jBlockquote(jA({
+  href: '#'
+}, [jI('Deneme'), jBr(), jI('Deneme'), jBr(), jI('Deneme')])), jBr(), jBlockquote(jA({
+  href: '#'
+}, [jI('Deneme'), jBr(), jI('Deneme'), jBr(), jI('Deneme')]))]);
+take2Jml.render();</script>
 </body>
 
 </html>

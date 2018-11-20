@@ -155,7 +155,7 @@ Clone project to you local machine. Install dependencies with `npm install` or `
 
 #### CDN
 ```html
-<script src="https://unpkg.com/jamal@1.0.0/build/src.min.js"></script>
+<script src="https://unpkg.com/jamal@1.0.1/build/src.min.js"></script>
 ```
 
 ##### NPM Package

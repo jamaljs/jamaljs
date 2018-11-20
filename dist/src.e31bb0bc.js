@@ -229,7 +229,19 @@ Jml.initialize = function () {
       var element = document.createElement(tag);
       element.setAttribute('_id', (0, _uniqid.default)());
       Object.keys(attrs).map(function (key) {
-        return element.setAttribute(key, attrs[key]);
+        // If given attribute is function
+        // then create an event listener function and
+        // add to element
+        if (typeof attrs[key] === 'function') {
+          var eventHandlerId = "jmlEventHandler_".concat(key).concat(element.attributes['_id'].value);
+          var onEventKey = key.replace(/^./, function (_) {
+            return '';
+          }).replace('on', '').toLowerCase();
+          window[eventHandlerId] = attrs[key];
+          element.addEventListener(onEventKey, window[eventHandlerId]);
+        } else {
+          element.setAttribute(key, attrs[key]);
+        }
       });
       children.forEach(function (child) {
         return element.appendChild(_typeof(child) === 'object' ? child : document.createTextNode(child));

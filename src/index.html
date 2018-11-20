@@ -42,11 +42,19 @@
   </script>
 
   <script>
-    const take2Jml = new Jml.create('#take-2', [jBlockquote(
-        jA({ href: '#' }, [jI('Deneme'), jBr(), jI('Deneme'), jBr(), jI('Deneme')])
-      ), jBr(), jBlockquote(
-        jA({ href: '#' }, [jI('Deneme'), jBr(), jI('Deneme'), jBr(), jI('Deneme')])
-      )]
+    const aClickEvent = function () {
+      alert(this.innerText + ' See...' + this.dataset['username']);
+    };
+
+    const take2Jml = new Jml.create('#take-2', [
+        jBlockquote(
+          jA({ href: 'javascript:void(0)', _onClick: aClickEvent, 'data-username': 'John Doe' }, 'I\'m a clickable thing!')
+        ),
+        jBr(),
+        jBlockquote(
+          jA({ href: '#' }, [jI('Deneme'), jBr(), jI('Deneme'), jBr(), jI('Deneme')])
+        )
+      ]
     );
 
     take2Jml.render();

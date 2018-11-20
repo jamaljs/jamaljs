@@ -71,7 +71,22 @@ Jml.initialize = (config = { customTags: [] }) => {
 				const element = document.createElement(tag);
 				element.setAttribute('_id', uniqid());
 
-				Object.keys(attrs).map(key => element.setAttribute(key, attrs[key]));
+				Object.keys(attrs).map(key => {
+					// If given attribute is function
+					// then create an event listener function and
+					// add to element
+					if (typeof attrs[key] === 'function') {
+						const eventHandlerId = `jmlEventHandler_${key}${element.attributes['_id'].value}`;
+						const onEventKey = key.replace(/^./, _ => '').replace('on', '').toLowerCase();
+						window[eventHandlerId] = attrs[key];
+
+						element.addEventListener(onEventKey, window[eventHandlerId]);
+					} else {
+						element.setAttribute(key, attrs[key]);
+					}
+
+				});
+
 				children.forEach(child => element.appendChild(typeof child === 'object' ? child : document.createTextNode(child)));
 
 				if (config.debug) {

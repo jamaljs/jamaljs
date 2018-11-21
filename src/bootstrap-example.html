@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Jamal Boostrap Example</title>
+  </head>
+  <body>
+
+    <div id="navbar"></div>
+
+    <main role="main">
+      <div id="jumbotron"></div>
+      <div id="specs" class="container"></div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/jamal@latest/build/src.min.js"></script>
+    <script>
+        
+        Jml.initialize();
+        const navMenu = [
+          { active: true, href: '#', label: 'Home' },
+          { href: '#', label: 'Home' },
+          { href: '#', label: 'Features' },
+          { disabled: true, href: '#', label: 'Pricing' },
+        ];
+        const navbarJ = new Jml.create('#navbar', jNav({ class: 'navbar navbar-expand-md navbar-dark bg-dark' }, [
+          jA({ class: 'navbar-brand', href: '#' }, 'Navbar'),
+          jButton({
+            class: 'navbar-toggler',
+            type: 'button',
+            'data-toggle': 'collapse',
+            'data-target': '#navbarNavAltMarkup',
+            'aria-controls': 'navbarNavAltMarkup',
+            'aria-expanded': false,
+            'aria-label': 'Toggle Navigation'
+          }, jSpan({ class: 'navbar-toggler-icon' })),
+          jDiv(
+            { class: 'collapse navbar-collapse', id: 'navbarNavAltMarkup' },
+            jDiv({ class: 'navbar-nav' }, navMenu.map(nav => 
+              jA({ class: `nav-item nav-link ${nav.disabled ? 'disabled' : ''} ${nav.active ? 'active' : ''}`, href: nav.href }, nav.label)
+            ))
+          ) // End navbarNavAltMarkup
+        ]));
+
+        const jumbotronContent = 'This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.';
+
+        const jumbotronJ = new Jml.create('#jumbotron', jDiv({ class: 'jumbotron' }, jDiv({ class: 'container' }, [
+          jH1({ class: 'display-3' }, 'Hello, world!'),
+          jP(jumbotronContent),
+          jP(jA({ class: 'btn btn-primary btn-lg', href: '#', role: 'button' }, 'Learn more »'))
+        ])));
+
+        const specs = [
+          {
+            title: 'Heading',
+            content: 'Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. ',
+            href: '#'
+          },
+          {
+            title: 'Heading',
+            content: 'Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. ',
+            href: '#'
+          },
+          {
+            title: 'Heading',
+            content: 'Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
+            href: '#'
+          }
+        ];
+        const specsJ = new Jml.create('#specs', jDiv({ id: 'container' }, [
+            jDiv({ class: 'row' }, specs.map(spec => jDiv({ class: 'col-md-4' }, [
+              jH2(spec.title),
+              jP(spec.content),
+              jP(jA({ class: 'btn btn-secondary', href: spec.href, role: 'button' }, 'View details »'))
+            ]))),
+            jHr()
+          ]
+        ));
+
+        const footerJ = new Jml.create('#footer', jFooter({ class: 'container' }, '© Company 2017-2018'));
+
+        navbarJ.render();
+        jumbotronJ.render();
+        specsJ.render();
+        footerJ.render();
+
+    </script>
+    </body>
+</html>

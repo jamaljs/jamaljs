@@ -165,7 +165,10 @@ $ npm install jamal
 Run `yarn watch` command and open http://localhost:8080 from your browser and get started. No not modify `src/index.js` unless you know what you're doing. `src/index.js` file is main jml library file. If you want to use jml (not developing it) import another script or write it inside html file.
 
 #### Examples
- * [Bootstrap 4 Boilerplate](/src/bootstrap-example.html)
+
+| [Bootstrap 4 Boilerplate](/src/bootstrap-example.html)                                                            |
+|-------------------------------------------------------------------------------------------------------------------|
+| [![Edit p2wjp9w6jx](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/p2wjp9w6jx) |
 
 ### To-Do
 

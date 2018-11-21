@@ -10,7 +10,7 @@
     "@babel/core": "^7.1.6"
   },
   "scripts": {
-    "build": "parcel build src/index.html -d build --global Jml",
+    "build": "parcel build src/index.js -d build -o src.min.js --no-source-maps --global Jml",
     "watch": "parcel -p 8080 watch src/index.html -d dist --global Jml"
   },
   "dependencies": {

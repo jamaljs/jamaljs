@@ -6,6 +6,7 @@ const Jml = {};
 
 Jml.create = function (selector, markup, debug = false) {
 	this.body = window.document.querySelector(selector);
+	this.body.innerHTML = null;
 
 	const defaultHolder = document.createElement('div');
 	defaultHolder.setAttribute('_id', `jml-container-${uniqid()}`);

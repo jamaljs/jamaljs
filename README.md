@@ -57,6 +57,8 @@ icon designer link: /brittnee.snodgrass
 Simply; creating dom nodes with programmatic way. 
 Complex way: There soo many javascript frameworks hanging around and i wanted to make a protest to this community. You don't need a framework for every thing, just use jQuery or write yourself.
 
+Simply; you have an ajax call and this call appends new content to your DOM. Don't write html yourself, just use a jml tag function to render content.
+
 [☮ Respects to Vanilla.js 💚💜💝](http://vanilla-js.com/)
 
 ### Whom is it for?

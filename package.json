@@ -8,12 +8,15 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "uglify-js": "^3.4.9"
   },
   "scripts": {
-    "build": "parcel build src/index.js -d build -o src.min.js --no-source-maps --global Jml && npm run clear",
+    "build": "npm run build:parcel && npm run clear && npm run uglify",
     "watch": "parcel -p 8080 watch src/index.html -d dist --global Jml",
-    "clear": "rimraf ./.cache"
+    "clear": "rimraf ./.cache",
+    "build:parcel": "parcel build src/index.js -d build -o src.built.js --no-source-maps --global Jml",
+    "uglify": "uglifyjs --compress --mangle --verbose build/src.built.js -o build/src.min.js"
   },
   "dependencies": {}
 }

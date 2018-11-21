@@ -104,16 +104,6 @@ For example html has `article` tag, jml has `jArticle` tag. Also jSomething tags
 jSomething methods also has config options. Currently it has just two options, `debug` and `inspect`.
 Debug option gives information about jSomething function runtime, inspect options puts debugger in that jSomething method.
 
-> Some references to clear it out:
-
-```javascript
-"header"          = jHeader(attibutes: Object<string, any>, children:any|jSomething);
-"some-custom-tag" = jSomeCustomTag(attibutes: Object<string, any>, children:any|jSomething);
-"script"          = jScript(attibutes: Object<string, any>, children:any|jSomething);
-"audio"           = jAudio(attibutes: Object<string, any>, children:any|jSomething); 
-"blockquote"      = jBlockquote(attibutes: Object<string, any>, children:any|jSomething); 
-```
-
 #### Accessing refs
 
 Your `jmlInstance` object has property called `getRef`. Which is a function, takes string for `_id` attribute.
@@ -128,7 +118,7 @@ Usage:
 
 #### Nesting
 
-Everything is jSomething method, a jSomething method takes an argument which can be another jSomething method. So you need to understand nesting carefuly.
+Everything is jSomething method, a jSomething method takes an argument which can be another jSomething method. So you need to understand nesting carefuly. Also all jSomething methods returns an `HTMLElement` object
 
 There is some complex example:
 
@@ -138,11 +128,14 @@ And thats actual render:
 
 ![Rendered table](src/img/output.png)
 
-Theres just few important points to care about
-* Always give at least two arguments to a jSomething function
-* First arg. must be Object. It can be empty but cant be without it.
-* Second arg. is content object which must be an array. Can be empty but cant be without it.
-* Second arg. can contain another jSomething function, string, array or number 
+jSomething functions overloads (ex. jTable)
+```typescript
+jTable(): HTMLElement;
+jTable(children: string|HTMLElement): HTMLElement;
+jTable(children: Array<string|HTMLElement>): HTMLElement;
+jTable(attributes: Object<string, string|number|function>, children: string|HTMLElement): HTMLElement;
+jTable(attributes: Object<string, string|number|function>, children: Array<string|HTMLElement>): HTMLElement;
+```
 
 #### Callbacks
 

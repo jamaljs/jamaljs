@@ -6,13 +6,14 @@
   "author": "Akın Özgen <akinozgen17@outlook.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
-    "@babel/core": "^7.1.6"
+    "rimraf": "^2.6.2"
   },
   "scripts": {
-    "build": "parcel build src/index.js -d build -o src.min.js --no-source-maps --global Jml",
-    "watch": "parcel -p 8080 watch src/index.html -d dist --global Jml"
+    "build": "parcel build src/index.js -d build -o src.min.js --no-source-maps --global Jml && npm run clear",
+    "watch": "parcel -p 8080 watch src/index.html -d dist --global Jml",
+    "clear": "rimraf ./.cache"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

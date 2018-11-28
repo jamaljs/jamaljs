@@ -40,7 +40,7 @@ Jml.processParameters = function (parameters = { attributes: {}, content: [] }) 
 		return { attrs: {}, children: attributes };
 
 	// If first parameter is (jSomething or text) and no attrs
-	if (attributes instanceof HTMLElement || typeof attributes === 'string')
+	if (attributes instanceof HTMLElement || typeof attributes === 'string' || attributes instanceof Promise)
 		return { attrs: {}, children: [attributes] };
 	
 	// If object of attrs and children(jSometing or string) passed

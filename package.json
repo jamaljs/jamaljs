@@ -1,6 +1,6 @@
 {
   "name": "jamal",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "build/src.min.js",
   "repository": "https://github.com/jamaljs/jamaljs.git",
   "author": "Akın Özgen <akinozgen17@outlook.com>",

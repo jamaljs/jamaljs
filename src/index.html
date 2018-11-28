@@ -7,14 +7,33 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src="./index.js"></script>
+  <style>
+  
+    .loading {
+      width: 100%;
+      text-align: center;
+    }
+
+    .loading img {
+      width: 20px;
+    }
+
+  </style>
 </head>
 
 <body>
 
   <div id="root"></div>
   <div id="take-2"></div>
+  <div id="promise-demo"></div>
+  <div id="promise-api-call"></div>
 
   <script>
+    const _ = Jml;
+    _.initialize();
+  </script>
+
+  <!-- script>
     Jml.initialize();
     const userData = [
       ['1', 'akinozgen', 'akinozgen17@outlook.com', '+90 5xx xxx xx xx'],
@@ -58,7 +77,57 @@
       ] // End Of Markup Array
     );
 
-    take2Jml.render();
+    // take2Jml.render();
+  </script -->
+
+  <script>
+    // cloning or something
+    // const _ = Jml;
+    // _.initialize();
+  
+    // // Promise to be wait
+    // const userData = new Promise((resolve, reject) => {
+    //   setTimeout(() => resolve('Akın Özgen'), 1000);
+    // });
+
+    // const _promiseDemo = new _.create('#promise-demo', jDiv(
+    //   { class: 'username' },
+    //   [userData],
+    //   { inspect: false, debug: true, loading: jImg({ src: 'https://loading.io/spinners/disk/lg.wordpress-rotating-ball-loading-gif.gif' }) }
+    // ));
+
+    // _promiseDemo.render();
+  
+  </script>
+
+  <script>
+  
+    const users = fetch('https://jsonplaceholder.typicode.com/users')
+      .then(r => r.json())
+      .then(response => response.map(user => jTr([
+        jTd(`${user.id}`),
+        jTd(user.name),
+        jTd(user.username),
+        jTd(user.email),
+      ])));
+
+    const loading = jDiv({ class: 'loading' }, jImg({ src: 'https://loading.io/spinners/disk/lg.wordpress-rotating-ball-loading-gif.gif' }));
+
+    const _apiCall = _.create('#promise-api-call', jTable(
+      { border: 3, bordercolor: 'green', cellspacing: 5, cellpadding: 3, width: '100%' },
+      [
+        jThead([
+          jTh('ID'),
+          jTh('Name'),
+          jTh('Username'),
+          jTh('Email'),
+        ]),
+        jTbody({}, users, { debug: true, inspect: false, loading: loading })
+      ]
+    ));
+
+    _apiCall.render();
+
   </script>
 </body>
 

@@ -1,6 +1,6 @@
 {
   "name": "jamal",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "main": "build/src.min.js",
   "repository": "https://github.com/jamaljs/jamaljs.git",
   "author": "Akın Özgen <akinozgen17@outlook.com>",
@@ -15,7 +15,7 @@
     "build": "npm run build:parcel && npm run clear && npm run uglify",
     "watch": "parcel -p 8080 watch src/index.html -d dist --global Jml",
     "watch:bs4": "parcel -p 8080 watch src/bootstrap-example.html -d dist --global Jml",
-    "clear": "rimraf ./.cache",
+    "clear": "rimraf ./.cache && rimraf ./dist",
     "build:parcel": "parcel build src/index.js -d build -o src.built.js --no-source-maps --global Jml",
     "uglify": "uglifyjs --compress --mangle --verbose build/src.built.js -o build/src.min.js"
   },

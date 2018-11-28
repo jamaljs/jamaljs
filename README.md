@@ -1,10 +1,11 @@
 <div align="center">
 <h1>JaMaL</h1>
+ <a href="https://badge.fury.io/js/jamal" rel="nofollow" class="rich-diff-level-one"><img src="https://camo.githubusercontent.com/5a3eb2b8be4d0798851555d2106b2e620f2ae6ba/68747470733a2f2f62616467652e667572792e696f2f6a732f6a616d616c2e737667" alt="npm version" data-canonical-src="https://badge.fury.io/js/jamal.svg" style="max-width:100%;"></a>
 <p>Stupidly simple javascript view engine</p>
 <img src="src/img/logo.png" />
 </div>
 
-[![npm version](https://badge.fury.io/js/jamal.svg)](https://badge.fury.io/js/jamal)
+
 
 [![NPM](https://nodei.co/npm/jamal.png)](https://nodei.co/npm/jamal/)
 

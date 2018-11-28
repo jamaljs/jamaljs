@@ -6,6 +6,8 @@
  
 <a href="https://nodei.co/npm/jamal/" rel="nofollow"><img src="https://camo.githubusercontent.com/eddb471eddcb27efc7bb01f02441edbe13e7e132/68747470733a2f2f6e6f6465692e636f2f6e706d2f6a616d616c2e706e67" alt="NPM" data-canonical-src="https://nodei.co/npm/jamal.png" style="max-width:100%;"></a>
 
+</div>
+
 JaMaL stands for JML which is javascript markup language. "a"'s are just filling.
 
 > Jamal (Arabic: جمال‎ Jamāl/Ǧamāl ) is an Arabic masculine given name, meaning "beauty". The use of this name is widespread across the Muslim world. In Egypt the name is pronounced [ɡæˈmæːl] and so is normally spelled Gamal . Tunisians may spell it Jamel. [Source](https://en.wikipedia.org/wiki/Jamal)

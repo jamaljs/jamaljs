@@ -44,8 +44,11 @@ Jml.processParameters = function (parameters = { attributes: {}, content: [] }) 
 		return { attrs: {}, children: [attributes] };
 	
 	// If object of attrs and children(jSometing or string) passed
-	if (typeof attributes === 'object' && (content instanceof HTMLElement || typeof content === 'string'))
+	if (typeof attributes === 'object' && (content instanceof HTMLElement || typeof content === 'string' || content instanceof Promise))
 		return { attrs: attributes, children: [content] };
+
+	if (typeof attributes === 'object' && content == undefined)
+		return { attrs: attributes, children: [] };
 	
 	// If nothing passed
 	return { attrs: {}, children: [] };
@@ -65,11 +68,12 @@ Jml.initialize = function (config = { customTags: [] }) {
 
 	tags.forEach(tag => 
 		window[`j${tag.replace(/^./, firstCharacter => firstCharacter.toUpperCase())}`] =
-			(attributes, content, config = { debug: false, inspect: false }) => {
+			(attributes, content, config = { debug: false, inspect: false, loading: null }) => {
 				const { attrs, children } = this.processParameters({ attributes, content });
 
+				const elementId = uniqid();
 				const element = document.createElement(tag);
-				element.setAttribute('_id', uniqid());
+				element.setAttribute('_id', elementId);
 
 				Object.keys(attrs).map(key => {
 					// If given attribute is function
@@ -88,9 +92,37 @@ Jml.initialize = function (config = { customTags: [] }) {
 				});
 
 				children.forEach(
-					child => element.appendChild(
-						typeof child === 'string' ? document.createTextNode(child) : child
-					)
+					child => {
+						// if given children is a promise append child in then block
+
+						if (child instanceof Promise) {
+							const { loading } = config;
+							// if custom loading element|text defined then append loading to the current element
+							if (loading) {
+								element.appendChild(typeof loading === 'string' ? document.createTextNode(loading) : loading);
+							}
+
+							child.then(context => {
+								// get parent element
+								const parentElement = window.document.querySelector(`[_id="${elementId}"]`);
+								// remove loading if defined
+								if (loading) {
+									parentElement.removeChild(parentElement.firstChild);
+								}
+								// append promise context to parent element
+								if (Array.isArray(context)) {
+									context.forEach(promiseObject => {
+										parentElement.appendChild(typeof promiseObject === 'string' ? document.createTextNode(promiseObject) : promiseObject)
+									});
+								} else {
+									parentElement.appendChild(typeof context === 'string' ? document.createTextNode(context) : context);
+								}
+							});
+						} else {
+							// just append child regularly
+							element.appendChild(typeof child === 'string' ? document.createTextNode(child) : child);
+						}
+					}
 				);
 
 				if (config.debug) {

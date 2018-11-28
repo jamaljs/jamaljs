@@ -168,9 +168,9 @@ Run `yarn watch` command and open http://localhost:8080 from your browser and ge
 
 #### Examples
 
-| [Bootstrap 4 Boilerplate](/src/bootstrap-example.html)                                                            |
-|-------------------------------------------------------------------------------------------------------------------|
-| [![Edit p2wjp9w6jx](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/p2wjp9w6jx) |
+| [Bootstrap 4 Boilerplate](/src/bootstrap-example.html) | Promise API Call |
+|-------------------------------------------------------------------------------------------------------------------|-|
+| [![Edit p2wjp9w6jx](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/p2wjp9w6jx) | [![Edit y7qj526o21](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/y7qj526o21) |
 
 ### To-Do
 

@@ -178,5 +178,6 @@ Run `yarn watch` command and open http://localhost:8080 from your browser and ge
 - [x] NPM package update.
 - [x] Remove customTag necessity.
 - [x] More flexible parameter passing for jSomething functions. 
-- [ ] HTML to JML tool.
+- [ ] Promise based async children and parameters support.
 - [ ] Two way binding for children.
+- [ ] HTML to JML tool. 

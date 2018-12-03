@@ -141,4 +141,4 @@ Jml.initialize = function (config = { customTags: [] }) {
 	});
 };
 
-module.exports = Jml;
+export default Jml;

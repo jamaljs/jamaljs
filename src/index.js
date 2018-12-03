@@ -5,7 +5,7 @@ const tags = "a,abbr,acronym,address,applet,area,article,aside,audio,b,base,base
 const Jml = {};
 
 Jml.create = function (selector, markup, debug = false) {
-	this.body = window.document.querySelector(selector);
+	this.body = selector instanceof HTMLElement ? selector : window.document.querySelector(selector);
 	this.body.innerHTML = null;
 
 	const defaultHolder = document.createElement('div');
@@ -66,77 +66,79 @@ Jml.initialize = function (config = { customTags: [] }) {
 		})(customTag)));
 	}
 
-	tags.forEach(tag => 
-		window[`j${tag.replace(/^./, firstCharacter => firstCharacter.toUpperCase())}`] =
-			(attributes, content, config = { debug: false, inspect: false, loading: null }) => {
-				const { attrs, children } = this.processParameters({ attributes, content });
+	tags.forEach(tag => {
+		const tagIdentifier = `j${tag.replace(/^./, firstCharacter => firstCharacter.toUpperCase())}`;
+		window[tagIdentifier] = (attributes, content, config = { debug: false, inspect: false, loading: null }) => {
+			const { attrs, children } = this.processParameters({ attributes, content });
 
-				const elementId = uniqid();
-				const element = document.createElement(tag);
-				element.setAttribute('_id', elementId);
+			const elementId = uniqid();
+			const element = document.createElement(tag);
+			element.setAttribute('_id', elementId);
 
-				Object.keys(attrs).map(key => {
-					// If given attribute is function
-					// then create an event listener function and
-					// add to element
-					if (typeof attrs[key] === 'function') {
-						const eventHandlerId = `jmlEventHandler_${key}${element.attributes['_id'].value}`;
-						const onEventKey = key.replace(/^./, _ => '').replace('on', '').toLowerCase();
-						window[eventHandlerId] = attrs[key];
+			Object.keys(attrs).map(key => {
+				// If given attribute is function
+				// then create an event listener function and
+				// add to element
+				if (typeof attrs[key] === 'function') {
+					const eventHandlerId = `jmlEventHandler_${key}${element.attributes['_id'].value}`;
+					const onEventKey = key.replace(/^./, _ => '').replace('on', '').toLowerCase();
+					window[eventHandlerId] = attrs[key];
 
-						element.addEventListener(onEventKey, window[eventHandlerId]);
-					} else {
-						element.setAttribute(key, attrs[key]);
-					}
-
-				});
-
-				children.forEach(
-					child => {
-						// if given children is a promise append child in then block
-
-						if (child instanceof Promise) {
-							const { loading } = config;
-							// if custom loading element|text defined then append loading to the current element
-							if (loading) {
-								element.appendChild(typeof loading === 'string' ? document.createTextNode(loading) : loading);
-							}
-
-							child.then(context => {
-								// get parent element
-								const parentElement = window.document.querySelector(`[_id="${elementId}"]`);
-								// remove loading if defined
-								if (loading) {
-									parentElement.removeChild(parentElement.firstChild);
-								}
-								// append promise context to parent element
-								if (Array.isArray(context)) {
-									context.forEach(promiseObject => {
-										parentElement.appendChild(typeof promiseObject === 'string' ? document.createTextNode(promiseObject) : promiseObject)
-									});
-								} else {
-									parentElement.appendChild(typeof context === 'string' ? document.createTextNode(context) : context);
-								}
-							});
-						} else {
-							// just append child regularly
-							element.appendChild(typeof child === 'string' ? document.createTextNode(child) : child);
-						}
-					}
-				);
-
-				if (config.debug) {
-					console.group(`Element: ${tag}`);
-					console.log('\tAttributes:', element.attributes);
-					console.log('\tChildren:', element.children);
-					console.groupEnd();
+					element.addEventListener(onEventKey, window[eventHandlerId]);
+				} else {
+					element.setAttribute(key, attrs[key]);
 				}
 
-				if (config.inspect) debugger;
+			});
 
-				return element;
+			children.forEach(
+				child => {
+					// if given children is a promise append child in then block
+
+					if (child instanceof Promise) {
+						const { loading } = config;
+						// if custom loading element|text defined then append loading to the current element
+						if (loading) {
+							element.appendChild(typeof loading === 'string' ? document.createTextNode(loading) : loading);
+						}
+
+						child.then(context => {
+							// get parent element
+							const parentElement = window.document.querySelector(`[_id="${elementId}"]`);
+							// remove loading if defined
+							if (loading) {
+								parentElement.removeChild(parentElement.firstChild);
+							}
+							// append promise context to parent element
+							if (Array.isArray(context)) {
+								context.forEach(promiseObject => {
+									parentElement.appendChild(typeof promiseObject === 'string' ? document.createTextNode(promiseObject) : promiseObject)
+								});
+							} else {
+								parentElement.appendChild(typeof context === 'string' ? document.createTextNode(context) : context);
+							}
+						});
+					} else {
+						// just append child regularly
+						element.appendChild(typeof child === 'string' ? document.createTextNode(child) : child);
+					}
+				}
+			);
+
+			if (config.debug) {
+				console.group(`Element: ${tag}`);
+				console.log('\tAttributes:', element.attributes);
+				console.log('\tChildren:', element.children);
+				console.groupEnd();
 			}
-	);
+
+			if (config.inspect) debugger;
+
+			return element;
+		}
+
+		Jml[tag] = window[tagIdentifier];
+	});
 };
 
 module.exports = Jml;

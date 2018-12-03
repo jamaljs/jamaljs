@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <script src="./index.js"></script>
   <style>
   
     .loading {
@@ -27,10 +26,12 @@
   <div id="take-2"></div>
   <div id="promise-demo"></div>
   <div id="promise-api-call"></div>
+  <div id="package-style-importing-demo"></div>
 
+  <script src="./module_demo.js"></script>
   <script>
-    const _ = Jml;
-    _.initialize();
+    // const _ = Jml;
+    // _.initialize();
   </script>
 
   <!-- script>
@@ -102,31 +103,31 @@
 
   <script>
   
-    const users = fetch('https://jsonplaceholder.typicode.com/users')
-      .then(r => r.json())
-      .then(response => response.map(user => jTr([
-        jTd(`${user.id}`),
-        jTd(user.name),
-        jTd(user.username),
-        jTd(user.email),
-      ])));
+    // const users = fetch('https://jsonplaceholder.typicode.com/users')
+    //   .then(r => r.json())
+    //   .then(response => response.map(user => jTr([
+    //     jTd(`${user.id}`),
+    //     jTd(user.name),
+    //     jTd(user.username),
+    //     jTd(user.email),
+    //   ])));
 
-    const loading = jDiv({ class: 'loading' }, jImg({ src: 'https://loading.io/spinners/disk/lg.wordpress-rotating-ball-loading-gif.gif' }));
+    // const loading = jDiv({ class: 'loading' }, jImg({ src: 'https://loading.io/spinners/disk/lg.wordpress-rotating-ball-loading-gif.gif' }));
 
-    const _apiCall = _.create('#promise-api-call', jTable(
-      { border: 3, bordercolor: 'green', cellspacing: 5, cellpadding: 3, width: '100%' },
-      [
-        jThead([
-          jTh('ID'),
-          jTh('Name'),
-          jTh('Username'),
-          jTh('Email'),
-        ]),
-        jTbody({}, users, { debug: true, inspect: false, loading: loading })
-      ]
-    ));
+    // const _apiCall = _.create('#promise-api-call', jTable(
+    //   { border: 3, bordercolor: 'green', cellspacing: 5, cellpadding: 3, width: '100%' },
+    //   [
+    //     jThead([
+    //       jTh('ID'),
+    //       jTh('Name'),
+    //       jTh('Username'),
+    //       jTh('Email'),
+    //     ]),
+    //     jTbody({}, users, { debug: true, inspect: false, loading: loading })
+    //   ]
+    // ));
 
-    _apiCall.render();
+    // _apiCall.render();
 
   </script>
 </body>

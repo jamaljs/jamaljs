@@ -1,3 +1,6 @@
+> Notice: I did some updates and documentation is not capable enough to explain all possibilities. Best way to understand is digging around examples which is at the below of this documentation.
+
+
 <div align="center">
 <h1>JaMaL</h1>
  <a href="https://badge.fury.io/js/jamal" rel="nofollow" class="rich-diff-level-one"><img src="https://camo.githubusercontent.com/5a3eb2b8be4d0798851555d2106b2e620f2ae6ba/68747470733a2f2f62616467652e667572792e696f2f6a732f6a616d616c2e737667" alt="npm version" data-canonical-src="https://badge.fury.io/js/jamal.svg" style="max-width:100%;"></a>
@@ -69,7 +72,7 @@ Of course this is not for huge projects. It was just a hobby to me so i hope sam
 
 ### Basic Usage
 
-I'm not going to explain figure it out yourself:
+I'm don't know how to describe its lifecycle in english. I'm not best at it. But i think it explains itself:
 
 ```html
 <div id="root"></div>

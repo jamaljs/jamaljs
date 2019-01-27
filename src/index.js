@@ -67,10 +67,14 @@ Jml.processParameters = function(parameters = { attributes: {}, content: [] }) {
   return { attrs: {}, children: [] };
 };
 
-Jml.initialize = function(config = { customTags: [] }) {
-  const { customTags } = config;
+Jml.initialize = function(config = { customTags: [], autoId: true, originalNames: false }) {
+  let { customTags, autoId, originalNames } = config;
 
-  if (customTags.length > 0) {
+	if (typeof originalNames === 'undefined') {
+		originalNames = false;
+	}
+
+	if (typeof customTags !== 'undefined') {
     customTags.forEach(customTag =>
       tags.push(
         (_ => {
@@ -83,10 +87,14 @@ Jml.initialize = function(config = { customTags: [] }) {
         })(customTag)
       )
     );
-  }
+	}
+	
+	if (typeof autoId === 'undefined') {
+		autoId = true;
+	}
 
   tags.forEach(tag => {
-    const tagIdentifier = `j${tag.replace(/^./, firstCharacter =>
+    const tagIdentifier = originalNames ? tag : `j${tag.replace(/^./, firstCharacter =>
       firstCharacter.toUpperCase()
     )}`;
     window[tagIdentifier] = (
@@ -101,7 +109,10 @@ Jml.initialize = function(config = { customTags: [] }) {
 
       const elementId = uniqid();
       const element = document.createElement(tag);
-      element.setAttribute("_id", elementId);
+			
+			if (autoId) {
+				element.setAttribute("_id", elementId);
+			}
 
       Object.keys(attrs).map(key => {
         // If given attribute is function
@@ -119,7 +130,16 @@ Jml.initialize = function(config = { customTags: [] }) {
 
           element.addEventListener(onEventKey, window[eventHandlerId]);
         } else {
-          element.setAttribute(key, attrs[key]);
+					// parse dataSomeThing to data-some-thing
+
+					if (key.includes('_data')) {
+						// ref. https://goo.gl/MBHmxA
+						const dataAttr = key.replace('_data', '').match(/([A-Z]?[^A-Z]*)/g).slice(0,-1).join('-').toLowerCase();
+
+						element.setAttribute(`data-${dataAttr}`, attrs[key]);
+					} else {
+						element.setAttribute(key, attrs[key]);
+					}
         }
       });
 

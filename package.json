@@ -8,6 +8,7 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
+    "parcel-bundler": "^1.11.0",
     "rimraf": "^2.6.2",
     "uglify-js": "^3.4.9"
   },

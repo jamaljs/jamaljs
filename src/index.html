@@ -18,6 +18,7 @@
     }
 
   </style>
+  <link rel="stylesheet" href="syntax-highligter/style.css">
 </head>
 
 <body>
@@ -27,6 +28,42 @@
   <div id="promise-demo"></div>
   <div id="promise-api-call"></div>
   <div id="package-style-importing-demo"></div>
+  <div id="data-attrs"></div>
+  <div>
+<pre class="language-javascript line-numbers">
+<code class="language-javascript">const _ = Jml;
+_.initialize();
+
+const app = _.create('#data-attrs', _.div({
+    _dataHiddenDataObject: 'See 👀👀',
+    _onClick() {
+      alert(this.dataset.hiddenDataObject);
+    }
+  },
+  'This div has data-hidden-data-object attribute.'
+  )
+);
+
+app.render();</code>
+</pre>
+  </div>
+<br><hr><br>
+  <div id="disable-auto-id"></div>
+<pre class="language-javascript line-numbers">
+<code class="language-javascript">_.initialize({ autoId: false });
+
+const app2 = _.create('#disable-auto-id', _.div('This div doesn\'t have an auto _id.'));
+app2.render();</code>
+</pre>
+<br><hr><br>
+  <div id="original-names"></div>
+<pre class="language-javascript line-numbers">
+<code class="language-javascript">_.initialize({ originalNames: true, autoId: false });
+
+const app3 = _.create('#original-names', div('This div used as div() method.'));
+
+app3.render(); </code>
+</pre>
 
   <!-- script src="./module_demo.js"></script -->
   <script>
@@ -131,8 +168,37 @@
 
   </script>
 
+  <script src="syntax-highligter/prism.js"></script>
+  <script src="index.js"></script>
   <script>
     // data-* attributes demo
+    const _ = Jml;
+    _.initialize();
+    
+    const app = _.create('#data-attrs', _.div({
+       _dataHiddenDataObject: 'See 👀👀',
+       _onClick() {
+         alert(this.dataset.hiddenDataObject);
+       }
+      },
+      'This div has data-hidden-data-object attribute. Come on click it!!!'
+      )
+    );
+
+    app.render();
+  </script>
+  <script>
+    _.initialize({ autoId: false });
+
+    const app2 = _.create('#disable-auto-id', _.div('This div doesn\'t have an auto _id attribute. But event handlers needs _id attr so i dont recommend you to use auto id as false on components which has event listener.'));
+    app2.render();
+  </script>
+  <script>
+    _.initialize({ originalNames: true, autoId: false });
+
+    const app3 = _.create('#original-names', div('This div used as div() method.'));
+
+    app3.render();
   </script>
 </body>
 

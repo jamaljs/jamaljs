@@ -175,6 +175,11 @@ Run `yarn watch` command and open http://localhost:8080 from your browser and ge
 |--------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | [![Edit Bootstrap 4 Boilerplate](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/p2wjp9w6jx) | [![Edit y7qj526o21](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/y7qj526o21) | [![Edit example-components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/48mo84xvlx) | [![Edit Character Counter](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k35w32v1zv) |
 
+-----------
+| 1.2.0 Updates                                                 |
+|---------------------------------------------------------------|
+| [See On Codepen](https://codepen.io/akinozgen/pen/rPeGQv) |
+
 ### To-Do
 
 - [x] onEvents for jSomething methods.

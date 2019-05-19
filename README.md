@@ -190,5 +190,5 @@ Run `yarn watch` command and open http://localhost:8080 from your browser and ge
 - [x] Remove customTag necessity.
 - [x] More flexible parameter passing for jSomething functions. 
 - [x] Promise based async children ~~and parameters~~ support.
-- [ ] Two way binding for children.
-- [ ] HTML to JML tool. 
+- ❌ Two way binding for children.
+- ❌ HTML to JML tool. 

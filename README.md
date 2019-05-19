@@ -4,7 +4,7 @@
 <div align="center">
 <h1>JaMaL</h1>
  <a href="https://badge.fury.io/js/jamal" rel="nofollow" class="rich-diff-level-one"><img src="https://camo.githubusercontent.com/5a3eb2b8be4d0798851555d2106b2e620f2ae6ba/68747470733a2f2f62616467652e667572792e696f2f6a732f6a616d616c2e737667" alt="npm version" data-canonical-src="https://badge.fury.io/js/jamal.svg" style="max-width:100%;"></a>
- <a href="https://ko-fi.com/G2G0PLW0" rel="nofollow" class="rich-diff-level-one"><img src="https://camo.githubusercontent.com/8d30f0409857aa50a5007b4ae3c467209cc4ef76/68747470733a2f2f7777772e6b6f2d66692e636f6d2f696d672f646f6e6174655f736d2e706e67" alt="ko-fi" data-canonical-src="https://www.ko-fi.com/img/donate_sm.png" style="max-width:100%;"></a>
+
 <p>Stupidly simple javascript view engine</p>
 <img src="https://raw.githubusercontent.com/jamaljs/jamaljs/master/src/img/logo.png" />
  
@@ -184,6 +184,7 @@ Run `yarn watch` command and open http://localhost:8080 from your browser and ge
 
 ### To-Do
 
+- [ ] Will do rebuild as a package and republished in npm (jamal-pack)
 - [x] onEvents for jSomething methods.
 - [x] NPM package update.
 - [x] Remove customTag necessity.

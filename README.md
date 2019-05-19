@@ -184,7 +184,7 @@ Run `yarn watch` command and open http://localhost:8080 from your browser and ge
 
 ### To-Do
 
-- ⬜ Will do rebuild as a package and republished in npm (jamal-pack)
+- ⬜ &nbsp;&nbsp;Will do rebuild as a package and republished in npm (jamal-pack)
 - ✔️ onEvents for jSomething methods.
 - ✔️ NPM package update.
 - ✔️ Remove customTag necessity.

@@ -184,11 +184,11 @@ Run `yarn watch` command and open http://localhost:8080 from your browser and ge
 
 ### To-Do
 
-- [ ] Will do rebuild as a package and republished in npm (jamal-pack)
-- [x] onEvents for jSomething methods.
-- [x] NPM package update.
-- [x] Remove customTag necessity.
-- [x] More flexible parameter passing for jSomething functions. 
-- [x] Promise based async children ~~and parameters~~ support.
+- ⬜ Will do rebuild as a package and republished in npm (jamal-pack)
+- ✔️ onEvents for jSomething methods.
+- ✔️ NPM package update.
+- ✔️ Remove customTag necessity.
+- ✔️ More flexible parameter passing for jSomething functions. 
+- ✔️ Promise based async children ~~and parameters~~ support.
 - ❌ Two way binding for children.
 - ❌ HTML to JML tool. 

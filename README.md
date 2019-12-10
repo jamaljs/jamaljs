@@ -16,7 +16,7 @@ JaMaL stands for JML which is javascript markup language. "a"'s are just filling
 
 > Jamal (Arabic: جمال‎ Jamāl/Ǧamāl ) is an Arabic masculine given name, meaning "beauty". The use of this name is widespread across the Muslim world. In Egypt the name is pronounced [ɡæˈmæːl] and so is normally spelled Gamal . Tunisians may spell it Jamel. [Source](https://en.wikipedia.org/wiki/Jamal)
 
-
+JaMaL stands for JML which is javascript markup language. "a"'s are just filling.
 ## Table Of Contents
 * [Philosophy](#philosophy)
   * [Why "JaMaL"?](#why-jamal)
@@ -184,7 +184,6 @@ Run `yarn watch` command and open http://localhost:8080 from your browser and ge
 
 ### To-Do
 
-- ⬜ &nbsp;&nbsp;Will do rebuild as a package and republished in npm (jamal-pack)
 - ✔️ onEvents for jSomething methods.
 - ✔️ NPM package update.
 - ✔️ Remove customTag necessity.

@@ -1,4 +1,3 @@
-> Notice: I did some updates and documentation is not capable enough to explain all capabilities. Best way to understand is digging around examples which is at the below of this documentation.
 
 
 <div align="center">
